@@ -1,6 +1,5 @@
---------------------
 CircuitSense Project
---------------------
+---
 
 Welcome to the CircuitSense project. CircuitSense is an application that
 converts a picture of a circuit schematic to a netlist. CircuitSense was
@@ -13,9 +12,8 @@ More information about CircuitSense can be found here:
 
 CircuitSense is authored and maintained by Matt Pillar <mpillar@uwaterloo.ca>.
 
---------------------
 CircuitSense Install
---------------------
+---
 
 On Linux, the following apt libraries are required:
 

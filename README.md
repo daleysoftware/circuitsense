@@ -1,7 +1,3 @@
-N.B. migration of this project is still in progress. While all the C++ code has
-been moved here, the original tesseract training scripts have not. This will be
-done soon.
-
 --------------------
 CircuitSense Project
 --------------------

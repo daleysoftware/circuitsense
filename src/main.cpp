@@ -4,7 +4,6 @@
 #include "Exception.h"
 #include "Algorithm.h"
 #include "AlgorithmDebug.h"
-#include "AlgorithmTimer.h"
 
 // Program usage.
 int usage(char* name, int exitval, std::string message = "")
@@ -19,7 +18,7 @@ int usage(char* name, int exitval, std::string message = "")
         << "CircuitSense Algorithm: convert an image of an electrical circuit "
         << "to a netlist."
         << std::endl << std::endl
-        << "Usage: " << name << " [--debug|--timer|--version|--custom,<x>,<y>] "
+        << "Usage: " << name << " [--debug|--version|--custom,<x>,<y>] "
         << "<image> "
         << std::endl << std::endl
         << " --debug:   Run the algorithm in debug mode. Verbose output will be"
@@ -27,18 +26,11 @@ int usage(char* name, int exitval, std::string message = "")
         << std::endl
         << "            debug images will be saved in the working directory."
         << std::endl
-        << " --timer:   Run the algorithm in timer mode. A timing analysis will"
-        << " be printed"
-        << std::endl
-        << "            after the algorithm has finished."
-        << std::endl
         << " --version: Print the current software version."
         << std::endl
         << " --custom:  Run with a custom start and end threshold."
         << std::endl << std::endl
         << " <image>:   The circuit image that we are going to convert."
-        << std::endl << std::endl
-        << "Copyright (c) 2011-2012 by Matt Pillar. All rights reserved."
         << std::endl << std::endl;
 
     exit(exitval);
@@ -58,7 +50,6 @@ int main(int argc, char** argv)
     IplImage* src;
 
     bool debug = false;
-    bool timer = false;
     bool custom = false;
 
     unsigned int tstart = 0, tend = 0;
@@ -66,7 +57,6 @@ int main(int argc, char** argv)
     if (argc == 2 &&
         std::string(argv[1]) != "--debug" &&
         std::string(argv[1]) != "--version" &&
-        std::string(argv[1]) != "--timer" &&
         std::string(argv[1]).substr(0,9) != "--custom,")
     {
         // No debug.
@@ -152,28 +142,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        if (argc != 3)
-        {
-            usage(argv[0], 1);
-        }
-
-        // Running with timer.
-        timer = true;
-        srcfile = argv[2];
-        src = cvLoadImage(srcfile.c_str());
-
-        if (src == 0)
-        {
-            std::string message =
-                "Could not load debug source image '" + srcfile + "'.";
-            usage(argv[0], 1, message);
-        }
-
-        std::cout
-            << std::endl << "RUNNING IN TIMER MODE"
-            << std::endl;
-
-        algorithm = new cs::AlgorithmTimer(*src);
+        usage(argv[0], 1);
     }
 
     std::cout
@@ -183,8 +152,6 @@ int main(int argc, char** argv)
     // Execute!
     try
     {
-        //uint64_t start = ThreadMaster::GetTime::Milli();
-
         if (custom)
         {
             algorithm->ConvertToNetlist(tstart, tend);
@@ -195,7 +162,7 @@ int main(int argc, char** argv)
         }
 
         double elapsed = 0;
-        if (debug || timer)
+        if (debug)
         {
             std::cout << std::endl;
         }

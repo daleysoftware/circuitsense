@@ -24,4 +24,7 @@ On mac, the following brew libraries are required:
     tesseract
     opencv
 
-Enjoy the project!
+Compatibility
+---
+
+CircuitSense is only compatible with Tesseract 2.0.4, and will not work with the newest versions of the Tesseract library (3+). I may add support for this in the future, if time allows.

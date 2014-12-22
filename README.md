@@ -6,8 +6,6 @@ converts a picture of a circuit schematic to a netlist. CircuitSense was
 originally developed as an iPhone application, and has since been migrated here
 and transformed into a more general purpose tool.
 
-CircuitSense is authored and maintained by Matt Pillar <mpillar@uwaterloo.ca>.
-
 CircuitSense Install
 ---
 

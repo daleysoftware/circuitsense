@@ -1,5 +1,5 @@
 all:
-	@cd src; make all
+	@cd src; $(MAKE) all
 
 clean:
-	@cd src; make clean
+	@cd src; $(MAKE) clean
